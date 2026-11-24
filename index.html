@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Grafik Keuangan Student Company (Minggu 1 – 5) | SMP Pembangunan Jaya</title>
+    <style>
+        :root {
+            --navy: #1B365D;
+            --navy-dark: #11233E;
+            --navy-light: #2A4E82;
+            --emerald: #059669;
+            --emerald-bg: #ECFDF5;
+            --emerald-border: #A7F3D0;
+            --coral: #E11D48;
+            --coral-bg: #FFF1F2;
+            --coral-border: #FECDD3;
+            --amber: #D97706;
+            --amber-bg: #FFFBEB;
+            --slate-50: #F8FAFC;
+            --slate-100: #F1F5F9;
+            --slate-200: #E2E8F0;
+            --slate-300: #CBD5E1;
+            --slate-500: #64748B;
+            --slate-700: #334155;
+            --slate-900: #0F172A;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+            --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--slate-100);
+            color: var(--slate-900);
+            line-height: 1.5;
+            padding-bottom: 48px;
+        }
+
+        /* Header Banner */
+        .app-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: #ffffff;
+            padding: 24px 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .school-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+        }
+
+        .app-title {
+            font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .app-subtitle {
+            font-size: 0.95rem;
+            color: #CBD5E1;
+            max-width: 720px;
+        }
+
+        .goal-box {
+            background: rgba(15, 23, 42, 0.28);
+            border-left: 4px solid #34D399;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            color: #F1F5F9;
+        }
+
+        .goal-box strong {
+            color: #6EE7B7;
+        }
+
+        /* Navigation Tabs */
+        .tabs-wrapper {
+            margin-top: -18px;
+            margin-bottom: 20px;
+        }
+
+        .tabs-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            background: #ffffff;
+            padding: 8px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--slate-200);
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 12px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--slate-700);
+        }
+
+        .tab-btn:hover {
+            background: var(--slate-50);
+        }
+
+        .tab-btn.active {
+            background: var(--navy);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(27, 54, 93, 0.25);
+        }
+
+        .tab-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--slate-200);
+            color: var(--navy);
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active .tab-num {
+            background: #34D399;
+            color: var(--navy-dark);
+        }
+
+        .tab-info-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .tab-info-desc {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-bar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Panels & Cards */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--slate-200);
+            box-shadow: var(--shadow-sm);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--slate-100);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Preset Buttons */
+        .preset-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+            font-family: inherit;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            border-color: var(--slate-300);
+            color: var(--slate-700);
+        }
+
+        .btn-outline:hover {
+            background: var(--slate-50);
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        .btn-navy {
+            background: var(--navy);
+            color: #ffffff;
+        }
+
+        .btn-navy:hover {
+            background: var(--navy-light);
+        }
+
+        .btn-emerald {
+            background: var(--emerald);
+            color: #ffffff;
+        }
+
+        .btn-emerald:hover {
+            background: #047857;
+        }
+
+        .btn-coral {
+            background: var(--coral);
+            color: #ffffff;
+        }
+
+        .btn-coral:hover {
+            background: #BE123C;
+        }
+
+        .btn-amber {
+            background: var(--amber-bg);
+            border-color: #FCD34D;
+            color: #92400E;
+        }
+
+        .btn-amber:hover {
+            background: #FEF3C7;
+        }
+
+        /* Layout Grid for Simulation */
+        .sim-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .sim-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SVG Chart Container */
+        .chart-box {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            padding: 12px;
+            position: relative;
+        }
+
+        .svg-tooltip {
+            position: absolute;
+            pointer-events: none;
+            background: rgba(15, 23, 42, 0.95);
+            color: #ffffff;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+            z-index: 20;
+            display: none;
+            min-width: 195px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot-emerald { width: 12px; height: 12px; border-radius: 50%; background: var(--emerald); }
+        .dot-coral { width: 12px; height: 12px; border-radius: 50%; background: var(--coral); }
+        .box-area-profit { width: 14px; height: 12px; border-radius: 3px; background: rgba(5, 150, 105, 0.22); border: 1px solid var(--emerald); }
+        .box-area-loss { width: 14px; height: 12px; border-radius: 3px; background: rgba(225, 29, 72, 0.22); border: 1px solid var(--coral); }
+
+        svg.chart-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        /* Week Controls in Mode 1 */
+        .week-controls-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 520px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .week-control-card {
+            border: 1px solid var(--slate-200);
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: #ffffff;
+        }
+
+        .week-control-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .status-pill {
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+
+        .pill-profit { background: var(--emerald-bg); color: var(--emerald); border: 1px solid var(--emerald-border); }
+        .pill-loss { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+        .pill-even { background: var(--slate-100); color: var(--slate-700); border: 1px solid var(--slate-300); }
+
+        .slider-row {
+            display: grid;
+            grid-template-columns: 115px 1fr 95px;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 0.78rem;
+        }
+
+        .slider-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .slider-label-cost { color: var(--coral); font-weight: 700; }
+        .slider-label-rev { color: var(--emerald); font-weight: 700; }
+
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: var(--navy);
+        }
+
+        input[type="range"].range-cost { accent-color: var(--coral); }
+        input[type="range"].range-rev { accent-color: var(--emerald); }
+
+        .num-input-mini {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1px solid var(--slate-300);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-align: right;
+            font-family: inherit;
+        }
+
+        /* Summary Strip */
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .kpi-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kpi-box {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            color: var(--slate-500);
+            font-weight: 600;
+        }
+
+        .kpi-val {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        /* Mode 2: Plotter Controls */
+        .plotter-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            background: var(--slate-50);
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--slate-200);
+            margin-bottom: 16px;
+        }
+
+        .series-selector {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .series-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid var(--slate-300);
+            background: #ffffff;
+            color: var(--slate-700);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s;
+        }
+
+        .series-btn.active-cost {
+            border-color: var(--coral);
+            background: var(--coral-bg);
+            color: var(--coral);
+        }
+
+        .series-btn.active-rev {
+            border-color: var(--emerald);
+            background: var(--emerald-bg);
+            color: var(--emerald);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid var(--slate-200);
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: var(--navy);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: var(--slate-50);
+        }
+
+        .feedback-banner {
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-top: 14px;
+            font-size: 0.88rem;
+            display: none;
+        }
+
+        .feedback-banner.show {
+            display: block;
+        }
+
+        /* Mode 3: Mini Worksheet */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--slate-700);
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--slate-300);
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            color: var(--slate-900);
+            background: #ffffff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.12);
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quiz-card {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .quiz-card label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .quiz-result {
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-top: 6px;
+            min-height: 18px;
+        }
+
+        .reflection-item {
+            margin-bottom: 14px;
+        }
+
+        .reflection-item label {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .reflection-hint {
+            font-size: 0.78rem;
+            color: var(--slate-500);
+            margin-bottom: 6px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy-dark);
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.25s ease;
+            z-index: 999;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Print Layout */
+        .print-only-header {
+            display: none;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 10mm 12mm;
+            }
+            body {
+                background: #ffffff !important;
+                padding: 0 !important;
+                font-size: 9.5pt !important;
+            }
+            .app-header, .tabs-wrapper, .no-print, .toast {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .tab-panel {
+                display: none !important;
+            }
+            #panel-3 {
+                display: block !important;
+            }
+            .print-only-header {
+                display: flex !important;
+                justify-content: space-between;
+                align-items: center;
+                background: var(--navy) !important;
+                color: #ffffff !important;
+                padding: 10px 14px;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+                padding: 12px !important;
+                margin-bottom: 10px !important;
+            }
+            .form-control {
+                border: 1px solid #94a3b8 !important;
+                padding: 5px 8px !important;
+                font-size: 9pt !important;
+            }
+            textarea.form-control {
+                min-height: 48px !important;
+            }
+            .print-chart-snapshot {
+                display: block !important;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Pembelajaran -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-top">
+                <div>
+                    <div class="school-badge">
+                        <span>🏫 SMP PEMBANGUNAN JAYA</span>
+                        <span>•</span>
+                        <span>PROYEK STUDENT COMPANY (KELAS 8)</span>
+                    </div>
+                    <h1 class="app-title">Lab Grafik Keuangan Student Company: Tren Biaya Produksi &amp; Pendapatan (Minggu 1 – 5)</h1>
+                    <p class="app-subtitle">Integrasi Mata Pelajaran IPS (Kegiatan Ekonomi, Efisiensi Produksi &amp; Strategi Pasar) dan Matematika (Koordinat Kartesius, Membaca &amp; Menggambar Grafik Garis)</p>
+                </div>
+            </div>
+            <div class="goal-box">
+                <strong>🎯 Tujuan Belajar:</strong> Murid mampu membaca pola kenaikan/penurunan <em>Belanja Produksi (Biaya)</em> dan <em>Pendapatan Penjualan</em> selama 5 minggu operasional, memetakan titik koordinat pada grafik garis secara mandiri, serta menarik kesimpulan keputusan ekonomi perusahaan siswa.
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Navigasi 3 Mode Belajar Bertahap -->
+        <div class="tabs-wrapper">
+            <nav class="tabs-bar" role="tablist">
+                <button class="tab-btn active" id="tab-1" onclick="switchTab(1)" role="tab" aria-selected="true">
+                    <span class="tab-num">1</span>
+                    <div>
+                        <span class="tab-info-title">Eksplorasi &amp; Simulasi Grafik</span>
+                        <span class="tab-info-desc">Ubah angka biaya &amp; pendapatan, amati area laba/rugi</span>
+                    </div>
+                </button>
+                <button class="tab-btn" id="tab-2" onclick="switchTab(2)" role="tab" aria-selected="false">
+                    <span class="tab-num">2</span>
+                    <div>
+                        <span class="tab-info-title">Latihan Menggambar Grafik Mandiri</span>
+                        <span class="tab-info-desc">Plot titik koordinat pada kanvas Kartesius interaktif</span>
+                    </div>
+                </button>
+                <button class="tab-btn" id="tab-3" onclick="switchTab(3)" role="tab" aria-selected="false">
+                    <span class="tab-num">3</span>
+                    <div>
+                        <span class="tab-info-title">Analisis IPS &amp; Matematika</span>
+                        <span class="tab-info-desc">Lembar kerja mini, refleksi keputusan &amp; cetak PDF</span>
+                    </div>
+                </button>
+            </nav>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- MODE 1: EKSPLORASI & SIMULASI GRAFIK                                -->
+        <!-- =================================================================== -->
+        <section id="panel-1" class="tab-panel active">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📊 Simulasi Tren Belanja Produksi vs Pendapatan Penjualan</div>
+                    <div class="preset-group">
+                        <button type="button" class="btn btn-emerald" onclick="applyPreset('case1')">Simulasi Pendapatan &gt; Biaya (Maks 5 Jt)</button>
+                        <button type="button" class="btn btn-navy" onclick="applyPreset('case2')">Efisiensi Bahan &amp; Lonjakan M4–M5</button>
+                        <button type="button" class="btn btn-amber" onclick="applyPreset('case3')">Rugi Awal Lalu Untung (BEP)</button>
+                        <button type="button" class="btn btn-outline" onclick="applyPreset('reset')">Reset Nol</button>
+                    </div>
+                </div>
+
+                <div class="sim-grid">
+                    <!-- Area Grafik SVG Interaktif -->
+                    <div>
+                        <div class="chart-box" id="simChartContainer">
+                            <div id="simTooltip" class="svg-tooltip"></div>
+                            <svg id="simChartSvg" class="chart-svg" viewBox="0 0 680 390" aria-label="Grafik Garis Keuangan Minggu 1 sampai 5"></svg>
+                            <div class="chart-legend">
+                                <div class="legend-item"><span class="dot-emerald"></span> Pendapatan Penjualan (Rp)</div>
+                                <div class="legend-item"><span class="dot-coral"></span> Belanja Produksi / Biaya (Rp)</div>
+                                <div class="legend-item"><span class="box-area-profit"></span> Area Laba (Pendapatan &gt; Biaya)</div>
+                                <div class="legend-item"><span class="box-area-loss"></span> Area Rugi (Biaya &gt; Pendapatan)</div>
+                            </div>
+                        </div>
+
+                        <!-- Ringkasan Angka Otomatis -->
+                        <div class="kpi-strip">
+                            <div class="kpi-box">
+                                <div class="kpi-label">Total Belanja Produksi</div>
+                                <div class="kpi-val" id="simTotalCost" style="color: var(--coral);">Rp 0</div>
+                            </div>
+                            <div class="kpi-box">
+                                <div class="kpi-label">Total Pendapatan (M1–M5)</div>
+                                <div class="kpi-val" id="simTotalRev" style="color: var(--emerald);">Rp 0</div>
+                            </div>
+                            <div class="kpi-box">
+                                <div class="kpi-label">Laba / Rugi Kumulatif</div>
+                                <div class="kpi-val" id="simNetProfit">Rp 0</div>
+                            </div>
+                            <div class="kpi-box">
+                                <div class="kpi-label">Titik Impas (Break-Even)</div>
+                                <div class="kpi-val" id="simBreakEven" style="color: var(--navy); font-size: 0.9rem;">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kontrol Slider & Input Angka M1 - M5 -->
+                    <div>
+                        <div style="font-size: 0.82rem; color: var(--slate-600); margin-bottom: 10px; background: var(--slate-50); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--slate-200);">
+                            💡 <strong>Cara Simulasi:</strong> Geser slider atau ketik nominal Rupiah (kelipatan Rp 100.000, maks Rp 5.000.000). Arahkan kursor pada titik grafik untuk melihat detail laba &amp; margin tiap minggu.
+                        </div>
+                        <div id="weekControlsContainer" class="week-controls-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODE 2: LATIHAN MENGGAMBAR GRAFIK MANDIRI (CANVAS PLOTTER)          -->
+        <!-- =================================================================== -->
+        <section id="panel-2" class="tab-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">✏️ Latihan Menggambar Grafik Mandiri (Canvas Plotter)</div>
+                    <div class="preset-group">
+                        <button type="button" class="btn btn-amber" onclick="generateNewPlotProblem()">🔄 Ganti Soal Acak</button>
+                        <button type="button" class="btn btn-outline" onclick="undoLastPoint()">↩️ Undo Titik</button>
+                        <button type="button" class="btn btn-outline" onclick="clearPlotter()">🗑️ Hapus Semua</button>
+                        <button type="button" class="btn btn-navy" onclick="checkUserGraph()">✅ Periksa Grafik Saya</button>
+                    </div>
+                </div>
+
+                <!-- Kotak Soal Cerita Kasus SC -->
+                <div id="plotterStoryBox" style="font-size: 0.85rem; color: var(--slate-700); margin-bottom: 12px; background: var(--emerald-bg); border: 1px solid var(--emerald-border); padding: 10px 14px; border-radius: 10px;">
+                    <strong>📖 Studi Kasus Student Company SMP Pembangunan Jaya:</strong> <span id="plotterStoryText">Memuat studi kasus...</span>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="plotterProblemTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 24%;">Komponen Keuangan</th>
+                                <th>Minggu 1</th>
+                                <th>Minggu 2</th>
+                                <th>Minggu 3</th>
+                                <th>Minggu 4</th>
+                                <th>Minggu 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 700; color: var(--coral); text-align: left;">🔴 Belanja Produksi (Biaya)</td>
+                                <td id="prob-cost-0">Rp 0</td>
+                                <td id="prob-cost-1">Rp 0</td>
+                                <td id="prob-cost-2">Rp 0</td>
+                                <td id="prob-cost-3">Rp 0</td>
+                                <td id="prob-cost-4">Rp 0</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 700; color: var(--emerald); text-align: left;">🟢 Pendapatan Penjualan</td>
+                                <td id="prob-rev-0">Rp 0</td>
+                                <td id="prob-rev-1">Rp 0</td>
+                                <td id="prob-rev-2">Rp 0</td>
+                                <td id="prob-rev-3">Rp 0</td>
+                                <td id="prob-rev-4">Rp 0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Toolbar Pemilihan Seri Garis -->
+                <div class="plotter-toolbar">
+                    <div class="series-selector">
+                        <button type="button" id="btnSeriesCost" class="series-btn active-cost" onclick="setActiveSeries('cost')">
+                            <span class="dot-coral"></span>
+                            <span>1. Gambar Garis Belanja Produksi (<span id="countCost">0</span>/5 titik)</span>
+                        </button>
+                        <button type="button" id="btnSeriesRev" class="series-btn" onclick="setActiveSeries('rev')">
+                            <span class="dot-emerald"></span>
+                            <span>2. Gambar Garis Pendapatan Penjualan (<span id="countRev">0</span>/5 titik)</span>
+                        </button>
+                    </div>
+                    <div id="plotterHoverHint" style="font-size: 0.8rem; font-weight: 700; color: var(--navy);">
+                        Arahkan kursor / sentuh grid grafik untuk memplot titik...
+                    </div>
+                </div>
+
+                <!-- Kanvas SVG Bidang Kartesius Interaktif -->
+                <div class="chart-box" style="max-width: 820px; margin: 0 auto;">
+                    <svg id="plotterSvg" class="chart-svg" viewBox="0 0 720 410" style="cursor: crosshair;" aria-label="Bidang Kartesius Interaktif untuk Menggambar Grafik"></svg>
+                </div>
+
+                <!-- Kotak Umpan Balik Hasil Pemeriksaan -->
+                <div id="plotterFeedback" class="feedback-banner"></div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODE 3: ANALISIS IPS & MATEMATIKA (LEMBAR KERJA MINI)               -->
+        <!-- =================================================================== -->
+        <section id="panel-3" class="tab-panel">
+            <!-- Header Khusus Cetak PDF -->
+            <div class="print-only-header">
+                <div>
+                    <div style="font-size: 8pt; font-weight: 700; opacity: 0.85;">SMP PEMBANGUNAN JAYA • PROYEK STUDENT COMPANY (IPS &amp; MATEMATIKA)</div>
+                    <div style="font-size: 13pt; font-weight: 800;">LEMBAR KERJA ANALISIS GRAFIK KEUANGAN (MINGGU 1 – 5)</div>
+                </div>
+                <div style="font-size: 9pt; font-weight: 700; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 6px;">
+                    KELAS 8
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">📝 Lembar Kerja Mini: Analisis Grafik (Berdasarkan Data Simulasi Mode 1)</div>
+                    <div class="preset-group no-print">
+                        <button type="button" class="btn btn-outline" onclick="copyWorksheetText()">📋 Salin Jawaban</button>
+                        <button type="button" class="btn btn-amber" onclick="downloadWorksheetTxt()">⬇️ Unduh .TXT</button>
+                        <button type="button" class="btn btn-navy" onclick="printWorksheet()">🖨️ Cetak / Simpan PDF</button>
+                    </div>
+                </div>
+
+                <!-- Identitas Siswa -->
+                <div class="form-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="form-group">
+                        <label for="studentName">Nama Lengkap Murid</label>
+                        <input type="text" id="studentName" class="form-control" placeholder="Ketik nama lengkapmu...">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentClass">Kelas</label>
+                        <select id="studentClass" class="form-control">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="8A">Kelas 8A</option>
+                            <option value="8B">Kelas 8B</option>
+                            <option value="8C">Kelas 8C</option>
+                            <option value="8D">Kelas 8D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">Nama Perusahaan SC</label>
+                        <input type="text" id="companyName" class="form-control" placeholder="Contoh: PT Jaya Kreasi SC">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentRole">Peran / Jabatan di SC</label>
+                        <select id="studentRole" class="form-control">
+                            <option value="">-- Pilih Jabatan --</option>
+                            <option value="President Director">President Director</option>
+                            <option value="Secretary of Director">Secretary of Director</option>
+                            <option value="VP / Staff Finance">VP / Staff Finance</option>
+                            <option value="VP / Staff Production">VP / Staff Production</option>
+                            <option value="VP / Staff Marketing">VP / Staff Marketing</option>
+                            <option value="VP / Staff HR">VP / Staff HR</option>
+                            <option value="VP / Staff PR">VP / Staff PR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Mini Preview Grafik dari Mode 1 agar terbawa saat Print & Analisis -->
+                <div class="chart-box" style="margin-bottom: 18px; background: #ffffff;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <span style="font-size: 0.8rem; font-weight: 800; color: var(--navy);">📈 Grafik Tren Keuangan Perusahaan (Minggu 1 – 5)</span>
+                        <span style="font-size: 0.75rem; color: var(--slate-500);" class="no-print">(Ubah angka di Mode 1 jika ingin menganalisis data perusahaanmu sendiri)</span>
+                    </div>
+                    <svg id="miniChartSvg" class="chart-svg" viewBox="0 0 680 260" style="max-height: 230px;"></svg>
+                </div>
+
+                <!-- Bagian A: Uji Pemahaman Matematika (Membaca Grafik) -->
+                <div style="margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--navy);">A. Uji Pemahaman Matematika (Membaca Data Grafik)</h3>
+                        <button type="button" class="btn btn-emerald no-print" onclick="checkMathAnswers()">🔍 Cek Jawaban Hitungan</button>
+                    </div>
+
+                    <div class="quiz-grid">
+                        <div class="quiz-card">
+                            <label for="qMaxProfitWeek">1. Berapa selisih LABA BERSIH perusahaan pada Minggu ke-5 (Rp)?</label>
+                            <input type="text" id="qMaxProfitWeek" class="form-control" placeholder="Contoh: 2.600.000">
+                            <div id="resQ1" class="quiz-result"></div>
+                        </div>
+
+                        <div class="quiz-card">
+                            <label for="qTotalRevenue5W">2. Berapa TOTAL PENDAPATAN PENJUALAN selama 5 minggu (M1–M5) dalam Rp?</label>
+                            <input type="text" id="qTotalRevenue5W" class="form-control" placeholder="Contoh: 13.500.000">
+                            <div id="resQ2" class="quiz-result"></div>
+                        </div>
+
+                        <div class="quiz-card">
+                            <label for="qRevGrowthNominal">3. Berapa kenaikan nominal Pendapatan dari Minggu ke-1 hingga Minggu ke-5 (Rp)?</label>
+                            <input type="text" id="qRevGrowthNominal" class="form-control" placeholder="Contoh: 3.400.000">
+                            <div id="resQ3" class="quiz-result"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Analisis & Refleksi IPS -->
+                <div>
+                    <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 10px;">B. Analisis Ekonomi &amp; Pengambilan Keputusan (IPS)</h3>
+
+                    <div class="reflection-item">
+                        <label for="refCostFactor">1. Faktor Efisiensi Biaya Produksi (IPS):</label>
+                        <p class="reflection-hint">Bagaimana strategi perusahaan dalam mengelola belanja produksi agar tetap lebih rendah daripada pendapatan penjualan (misal: pembelian bahan baku grosir, pengurangan sisa bahan, atau pembagian kerja)?</p>
+                        <textarea id="refCostFactor" class="form-control" rows="2" placeholder="Tuliskan analisis efisiensi biaya produksimu..."></textarea>
+                    </div>
+
+                    <div class="reflection-item" style="margin-bottom: 0;">
+                        <label for="refRevStrategy">2. Strategi Pemasaran &amp; Peningkatan Permintaan Pasar (IPS):</label>
+                        <p class="reflection-hint">Berdasarkan tren garis pendapatan yang terus meningkat hingga Rp 4.600.000, strategi promosi, penetapan harga, atau saluran distribusi apa yang berhasil menarik minat pembeli?</p>
+                        <textarea id="refRevStrategy" class="form-control" rows="2" placeholder="Tuliskan strategi pemasaranmu dengan bahasa sendiri..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Pesan notifikasi</div>
+
+    <script>
+        // =========================================================================
+        // STATE & KONSTANTA GLOBAL
+        // =========================================================================
+        const WEEKS = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4', 'Minggu 5'];
+        const MAX_Y = 5000000;  // Skala maksimal Sumbu Y: Rp 5.000.000
+        const STEP_Y = 500000;  // Interval grid Y: Rp 500.000
+        const SLIDER_STEP = 100000; // Kelipatan slider Mode 1: Rp 100.000
+
+        // Data Default Mode 1: Simulasi Untung Sehat (Pendapatan > Biaya Produksi, Maks Rp 5 Jt)
+        let simData = {
+            cost: [800000, 1100000, 1400000, 1700000, 2000000],
+            rev:  [1200000, 1800000, 2500000, 3400000, 4600000]
+        };
+
+        // Data untuk Mode 2 (Canvas Plotter Latihan Mandiri)
+        let plotterTarget = {
+            story: '',
+            cost: [1000000, 1500000, 1500000, 2000000, 2000000],
+            rev:  [1500000, 2500000, 3000000, 4000000, 4500000]
+        };
+
+        // Titik yang digambar siswa di Mode 2: array berisi null atau nilai Rp (0..5.000.000) untuk index 0..4
+        let userPlot = {
+            cost: [null, null, null, null, null],
+            rev:  [null, null, null, null, null]
+        };
+        let plotHistory = []; // Menyimpan urutan klik untuk fitur Undo
+        let activeSeries = 'cost'; // 'cost' atau 'rev'
+        let showAnswerKey = false;
+        let hoverCoord = null; // { weekIdx, valY }
+
+        // =========================================================================
+        // UTILITAS FORMAT RUPIAH & TOAST
+        // =========================================================================
+        function formatRp(num) {
+            const sign = num < 0 ? '-' : '';
+            return sign + 'Rp ' + Math.abs(Math.round(num)).toLocaleString('id-ID');
+        }
+
+        function formatShortRp(num) {
+            if (num === 0) return 'Rp 0';
+            if (num >= 1000000) {
+                const jt = num / 1000000;
+                return 'Rp ' + (Number.isInteger(jt) ? jt : jt.toFixed(1).replace('.', ',')) + ' Jt';
+            }
+            return 'Rp ' + (num / 1000) + 'rb';
+        }
+
+        function formatAxisRp(num) {
+            if (num === 0) return 'Rp 0';
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        function parseNumericRp(str) {
+            if (!str) return NaN;
+            const cleaned = str.toString().trim();
+            const isNeg = cleaned.startsWith('-');
+            const digits = cleaned.replace(/[^0-9]/g, '');
+            if (!digits) return NaN;
+            const val = parseInt(digits, 10);
+            return isNeg ? -val : val;
+        }
+
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 2800);
+        }
+
+        // =========================================================================
+        // NAVIGASI TAB
+        // =========================================================================
+        function switchTab(tabIndex) {
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById('tab-' + i);
+                const panel = document.getElementById('panel-' + i);
+                if (i === tabIndex) {
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
+                    panel.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                    panel.classList.remove('active');
+                }
+            }
+            if (tabIndex === 3) {
+                renderLineChart('miniChartSvg', simData.cost, simData.rev, { compact: true });
+            }
+        }
+
+        // =========================================================================
+        // RENDERER GRAFIK GARIS SVG (DIPAKAI OLEH MODE 1 & MODE 3)
+        // =========================================================================
+        function renderLineChart(svgId, costArr, revArr, options = {}) {
+            const svg = document.getElementById(svgId);
+            if (!svg) return;
+
+            const isCompact = options.compact || false;
+            const W = 680;
+            const H = isCompact ? 260 : 390;
+            const padL = 96;
+            const padR = 36;
+            const padT = 28;
+            const padB = 42;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+
+            const getX = (i) => padL + (i * (plotW / 4));
+            const getY = (val) => padT + plotH - ((val / MAX_Y) * plotH);
+
+            let html = '';
+
+            // Background putih area plot
+            html += `<rect x="${padL}" y="${padT}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#CBD5E1" stroke-width="1.2"/>`;
+
+            // Grid Horizontal & Label Sumbu Y (Rp 0 s.d. Rp 5.000.000 per kelipatan Rp 500.000)
+            const stepCount = MAX_Y / STEP_Y; // 10 langkah
+            for (let s = 0; s <= stepCount; s++) {
+                const val = s * STEP_Y;
+                const y = getY(val);
+                if (isCompact && s % 2 !== 0 && s !== stepCount) continue;
+                html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="${s === 0 ? '#64748B' : '#E2E8F0'}" stroke-width="${s === 0 ? '1.5' : '1'}" stroke-dasharray="${s === 0 ? '' : '4,4'}"/>`;
+                html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="10.5" font-weight="600" fill="#475569">${formatAxisRp(val)}</text>`;
+            }
+
+            // Grid Vertikal & Label Sumbu X
+            for (let i = 0; i < 5; i++) {
+                const x = getX(i);
+                html += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + plotH}" stroke="#E2E8F0" stroke-width="1"/>`;
+                html += `<text x="${x}" y="${padT + plotH + 22}" text-anchor="middle" font-size="12" font-weight="700" fill="#1B365D">${WEEKS[i]}</text>`;
+            }
+
+            // Poligon Area Arsir Antar Segmen (Laba = Hijau, Rugi = Merah) & Deteksi Perpotongan (Break-Even)
+            let breakEvenPoints = [];
+            for (let i = 0; i < 4; i++) {
+                const x1 = getX(i), x2 = getX(i + 1);
+                const c1 = costArr[i], c2 = costArr[i + 1];
+                const r1 = revArr[i], r2 = revArr[i + 1];
+                const yc1 = getY(c1), yc2 = getY(c2);
+                const yr1 = getY(r1), yr2 = getY(r2);
+
+                const diff1 = r1 - c1;
+                const diff2 = r2 - c2;
+
+                if ((diff1 >= 0 && diff2 >= 0) || (diff1 <= 0 && diff2 <= 0)) {
+                    const isProfit = (diff1 + diff2) >= 0;
+                    const fillColor = isProfit ? 'rgba(5, 150, 105, 0.16)' : 'rgba(225, 29, 72, 0.16)';
+                    html += `<polygon points="${x1},${yr1} ${x2},${yr2} ${x2},${yc2} ${x1},${yc1}" fill="${fillColor}" />`;
+                    if (diff1 === 0 && (r1 > 0 || c1 > 0)) breakEvenPoints.push({ x: x1, y: yr1, label: `BEP M${i + 1}` });
+                    if (i === 3 && diff2 === 0 && (r2 > 0 || c2 > 0)) breakEvenPoints.push({ x: x2, y: yr2, label: `BEP M${i + 2}` });
+                } else {
+                    const t = Math.abs(diff1) / (Math.abs(diff1) + Math.abs(diff2));
+                    const xm = x1 + t * (x2 - x1);
+                    const ym = yc1 + t * (yc2 - yc1);
+
+                    const fill1 = diff1 > 0 ? 'rgba(5, 150, 105, 0.16)' : 'rgba(225, 29, 72, 0.16)';
+                    const fill2 = diff2 > 0 ? 'rgba(5, 150, 105, 0.16)' : 'rgba(225, 29, 72, 0.16)';
+
+                    html += `<polygon points="${x1},${yr1} ${xm},${ym} ${x1},${yc1}" fill="${fill1}" />`;
+                    html += `<polygon points="${xm},${ym} ${x2},${yr2} ${x2},${yc2}" fill="${fill2}" />`;
+                    breakEvenPoints.push({ x: xm, y: ym, label: `BEP` });
+                }
+            }
+
+            // Gambar Garis Belanja Produksi (Coral)
+            const costPointsStr = costArr.map((v, i) => `${getX(i)},${getY(v)}`).join(' ');
+            html += `<polyline fill="none" stroke="#E11D48" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${costPointsStr}" />`;
+
+            // Gambar Garis Pendapatan Penjualan (Emerald)
+            const revPointsStr = revArr.map((v, i) => `${getX(i)},${getY(v)}`).join(' ');
+            html += `<polyline fill="none" stroke="#059669" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${revPointsStr}" />`;
+
+            // Penanda Titik Break-Even
+            breakEvenPoints.forEach(pt => {
+                html += `<circle cx="${pt.x}" cy="${pt.y}" r="6" fill="#F59E0B" stroke="#ffffff" stroke-width="2" />`;
+                if (!isCompact) {
+                    html += `<rect x="${pt.x - 22}" y="${pt.y - 24}" width="44" height="16" rx="4" fill="#1B365D" />`;
+                    html += `<text x="${pt.x}" y="${pt.y - 13}" text-anchor="middle" font-size="9" font-weight="800" fill="#ffffff">${pt.label}</text>`;
+                }
+            });
+
+            // Titik Koordinat, Label Nilai Rupiah & Area Hover Tooltip Interaktif
+            for (let i = 0; i < 5; i++) {
+                const x = getX(i);
+                const yc = getY(costArr[i]);
+                const yr = getY(revArr[i]);
+
+                const revAbove = yr <= yc;
+                const revLabelY = revAbove ? Math.max(padT + 12, yr - 10) : Math.min(padT + plotH - 6, yr + 18);
+                const costLabelY = !revAbove ? Math.max(padT + 12, yc - 10) : Math.min(padT + plotH - 6, yc + 18);
+
+                // Node Biaya
+                html += `<circle cx="${x}" cy="${yc}" r="5.5" fill="#E11D48" stroke="#ffffff" stroke-width="2" />`;
+                html += `<text x="${x}" y="${costLabelY}" text-anchor="middle" font-size="10" font-weight="700" fill="#BE123C">${formatShortRp(costArr[i])}</text>`;
+
+                // Node Pendapatan
+                html += `<circle cx="${x}" cy="${yr}" r="5.5" fill="#059669" stroke="#ffffff" stroke-width="2" />`;
+                html += `<text x="${x}" y="${revLabelY}" text-anchor="middle" font-size="10" font-weight="700" fill="#047857">${formatShortRp(revArr[i])}</text>`;
+
+                // Kolom interaksi hover untuk menampilkan detail tooltip minggu ke-i
+                if (!isCompact) {
+                    const colW = plotW / 4;
+                    html += `<rect x="${x - colW / 2}" y="${padT}" width="${colW}" height="${plotH}" fill="transparent" style="cursor: pointer;" onmouseenter="showSimTooltip(event, ${i})" onmousemove="moveSimTooltip(event)" onmouseleave="hideSimTooltip()" />`;
+                }
+            }
+
+            svg.innerHTML = html;
+        }
+
+        // Tooltip Interaktif Mode 1
+        function showSimTooltip(e, weekIdx) {
+            const tooltip = document.getElementById('simTooltip');
+            if (!tooltip) return;
+
+            const cost = simData.cost[weekIdx];
+            const rev = simData.rev[weekIdx];
+            const profit = rev - cost;
+            const margin = rev > 0 ? ((profit / rev) * 100).toFixed(1) : '0.0';
+            const statusColor = profit > 0 ? '#34D399' : (profit < 0 ? '#FB7185' : '#CBD5E1');
+            const statusLabel = profit > 0 ? 'LABA' : (profit < 0 ? 'RUGI' : 'IMPAS');
+
+            tooltip.innerHTML = `
+                <div style="font-weight: 800; font-size: 0.85rem; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px; display: flex; justify-content: space-between;">
+                    <span>${WEEKS[weekIdx]}</span>
+                    <span style="color: ${statusColor};">${statusLabel}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span style="color: #6EE7B7;">Pendapatan:</span>
+                    <strong>${formatRp(rev)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                    <span style="color: #FDA4AF;">Biaya Produksi:</span>
+                    <strong>${formatRp(cost)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 4px; padding-top: 4px; border-top: 1px dashed rgba(255,255,255,0.2);">
+                    <span>Selisih (${margin}%):</span>
+                    <strong style="color: ${statusColor};">${profit > 0 ? '+' : ''}${formatRp(profit)}</strong>
+                </div>
+            `;
+            tooltip.style.display = 'block';
+            moveSimTooltip(e);
+        }
+
+        function moveSimTooltip(e) {
+            const container = document.getElementById('simChartContainer');
+            const tooltip = document.getElementById('simTooltip');
+            if (!container || !tooltip) return;
+
+            const rect = container.getBoundingClientRect();
+            let left = e.clientX - rect.left + 14;
+            let top = e.clientY - rect.top - 10;
+
+            if (left + 210 > rect.width) {
+                left = e.clientX - rect.left - 210;
+            }
+            if (top < 8) top = 8;
+
+            tooltip.style.left = left + 'px';
+            tooltip.style.top = top + 'px';
+        }
+
+        function hideSimTooltip() {
+            const tooltip = document.getElementById('simTooltip');
+            if (tooltip) tooltip.style.display = 'none';
+        }
+
+        // =========================================================================
+        // LOGIKA MODE 1: KONTROL SLIDER & PRESET STUDI KASUS (SKALA 5 JUTA)
+        // =========================================================================
+        function buildWeekControls() {
+            const container = document.getElementById('weekControlsContainer');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 5; i++) {
+                const card = document.createElement('div');
+                card.className = 'week-control-card';
+                card.innerHTML = `
+                    <div class="week-control-header">
+                        <span>${WEEKS[i]}</span>
+                        <span id="weekStatus-${i}" class="status-pill pill-even">Impas: Rp 0</span>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-label-cost">🔴 Biaya Produksi</span>
+                        <input type="range" class="range-cost" id="sliderCost-${i}" min="0" max="${MAX_Y}" step="${SLIDER_STEP}" value="${simData.cost[i]}" oninput="updateSimValue('cost', ${i}, this.value)">
+                        <input type="text" inputmode="numeric" class="num-input-mini" id="inputCost-${i}" value="${simData.cost[i].toLocaleString('id-ID')}" onchange="updateSimValue('cost', ${i}, this.value)">
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-label-rev">🟢 Pendapatan</span>
+                        <input type="range" class="range-rev" id="sliderRev-${i}" min="0" max="${MAX_Y}" step="${SLIDER_STEP}" value="${simData.rev[i]}" oninput="updateSimValue('rev', ${i}, this.value)">
+                        <input type="text" inputmode="numeric" class="num-input-mini" id="inputRev-${i}" value="${simData.rev[i].toLocaleString('id-ID')}" onchange="updateSimValue('rev', ${i}, this.value)">
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function updateSimValue(type, idx, rawVal) {
+            const parsed = parseNumericRp(rawVal);
+            let val = isNaN(parsed) ? 0 : Math.max(0, Math.min(MAX_Y, parsed));
+            simData[type][idx] = val;
+
+            const slider = document.getElementById(`${type === 'cost' ? 'sliderCost' : 'sliderRev'}-${idx}`);
+            const input = document.getElementById(`${type === 'cost' ? 'inputCost' : 'inputRev'}-${idx}`);
+            if (slider) slider.value = val;
+            if (input) input.value = val.toLocaleString('id-ID');
+
+            refreshSimulation();
+        }
+
+        function refreshSimulation() {
+            renderLineChart('simChartSvg', simData.cost, simData.rev);
+
+            let totalCost = 0;
+            let totalRev = 0;
+            let bepWeeks = [];
+
+            for (let i = 0; i < 5; i++) {
+                const c = simData.cost[i];
+                const r = simData.rev[i];
+                const diff = r - c;
+                totalCost += c;
+                totalRev += r;
+
+                const pill = document.getElementById(`weekStatus-${i}`);
+                if (pill) {
+                    if (diff > 0) {
+                        pill.className = 'status-pill pill-profit';
+                        pill.textContent = `Laba: +${formatRp(diff)}`;
+                    } else if (diff < 0) {
+                        pill.className = 'status-pill pill-loss';
+                        pill.textContent = `Rugi: ${formatRp(diff)}`;
+                    } else {
+                        pill.className = 'status-pill pill-even';
+                        pill.textContent = `Impas: Rp 0`;
+                    }
+                }
+
+                if (diff === 0 && (r > 0 || c > 0)) {
+                    bepWeeks.push(`M${i + 1}`);
+                } else if (i < 4) {
+                    const nextDiff = simData.rev[i + 1] - simData.cost[i + 1];
+                    if ((diff < 0 && nextDiff > 0) || (diff > 0 && nextDiff < 0)) {
+                        bepWeeks.push(`Antara M${i + 1}–M${i + 2}`);
+                    }
+                }
+            }
+
+            const net = totalRev - totalCost;
+            document.getElementById('simTotalCost').textContent = formatRp(totalCost);
+            document.getElementById('simTotalRev').textContent = formatRp(totalRev);
+
+            const netEl = document.getElementById('simNetProfit');
+            netEl.textContent = (net > 0 ? '+' : '') + formatRp(net);
+            netEl.style.color = net > 0 ? 'var(--emerald)' : (net < 0 ? 'var(--coral)' : 'var(--navy)');
+
+            document.getElementById('simBreakEven').textContent = bepWeeks.length > 0 ? bepWeeks.join(', ') : (net > 0 ? 'Untung sejak M1' : 'Belum tercapai');
+        }
+
+        function applyPreset(presetName) {
+            if (presetName === 'case1') {
+                // Simulasi Pendapatan > Biaya (Maks 5 Jt)
+                simData.cost = [800000, 1100000, 1400000, 1700000, 2000000];
+                simData.rev  = [1200000, 1800000, 2500000, 3400000, 4600000];
+                showToast('Simulasi Pendapatan > Biaya (Maks Rp 5 Jt) dimuat!');
+            } else if (presetName === 'case2') {
+                // Efisiensi Bahan & Lonjakan M4-M5
+                simData.cost = [1500000, 1400000, 1300000, 1500000, 1600000];
+                simData.rev  = [1600000, 2100000, 2700000, 3800000, 4900000];
+                showToast('Skenario Efisiensi Bahan Baku & Lonjakan Penjualan M4–M5 dimuat!');
+            } else if (presetName === 'case3') {
+                // Rugi Awal Lalu Untung (BEP)
+                simData.cost = [1800000, 1700000, 1600000, 1800000, 2000000];
+                simData.rev  = [1000000, 1700000, 2400000, 3300000, 4400000];
+                showToast('Skenario Rugi Awal Lalu Untung (Titik Impas di Minggu 2) dimuat!');
+            } else {
+                // Reset Nol
+                simData.cost = [0, 0, 0, 0, 0];
+                simData.rev  = [0, 0, 0, 0, 0];
+                showToast('Semua nominal direset ke Rp 0.');
+            }
+            buildWeekControls();
+            refreshSimulation();
+        }
+
+        // =========================================================================
+        // LOGIKA MODE 2: LATIHAN MENGGAMBAR GRAFIK MANDIRI (CANVAS PLOTTER)
+        // =========================================================================
+        const PLOT_CFG = {
+            W: 720,
+            H: 410,
+            padL: 98,
+            padR: 40,
+            padT: 28,
+            padB: 44
+        };
+
+        function getPlotX(weekIdx) {
+            const plotW = PLOT_CFG.W - PLOT_CFG.padL - PLOT_CFG.padR;
+            return PLOT_CFG.padL + (weekIdx * (plotW / 4));
+        }
+
+        function getPlotY(val) {
+            const plotH = PLOT_CFG.H - PLOT_CFG.padT - PLOT_CFG.padB;
+            return PLOT_CFG.padT + plotH - ((val / MAX_Y) * plotH);
+        }
+
+        function setActiveSeries(series) {
+            activeSeries = series;
+            const btnCost = document.getElementById('btnSeriesCost');
+            const btnRev = document.getElementById('btnSeriesRev');
+            if (series === 'cost') {
+                btnCost.className = 'series-btn active-cost';
+                btnRev.className = 'series-btn';
+            } else {
+                btnCost.className = 'series-btn';
+                btnRev.className = 'series-btn active-rev';
+            }
+            renderPlotterCanvas();
+        }
+
+        function generateNewPlotProblem() {
+            const presets = [
+                {
+                    story: 'PT Jaya Kuliner SC memproduksi camilan sehat. Berkat promosi media sosial dan paket bundling, pendapatan terus melampaui biaya produksi dari Minggu 1 hingga Minggu 5.',
+                    cost: [1000000, 1500000, 1500000, 2000000, 2000000],
+                    rev:  [1500000, 2500000, 3000000, 4000000, 4500000]
+                },
+                {
+                    story: 'CV Nusantara Kriya SC berhasil melakukan efisiensi pembelian bahan baku di Minggu 3–4 sehingga biaya produksi terkendali sementara pendapatan penjualan terus melejit.',
+                    cost: [1500000, 1500000, 1000000, 1500000, 2000000],
+                    rev:  [2000000, 2500000, 3000000, 4000000, 5000000]
+                },
+                {
+                    story: 'PT Kreasi Digital SC membuka sistem pre-order merchandise sekolah. Setiap minggu permintaan meningkat tajam dan laba perusahaan bertambah konsisten.',
+                    cost: [500000, 1000000, 1500000, 2000000, 2500000],
+                    rev:  [1000000, 2000000, 2500000, 3500000, 4500000]
+                },
+                {
+                    story: 'PT Pangan Lestari SC memasok minuman herbal saat acara bazar sekolah di Minggu 4 dan 5, menghasilkan lonjakan pendapatan hingga Rp 4.500.000.',
+                    cost: [1000000, 1000000, 1500000, 2000000, 2000000],
+                    rev:  [1500000, 2000000, 2500000, 3500000, 4500000]
+                }
+            ];
+
+            let candidate;
+            do {
+                candidate = presets[Math.floor(Math.random() * presets.length)];
+            } while (JSON.stringify(candidate.rev) === JSON.stringify(plotterTarget.rev));
+
+            plotterTarget = {
+                story: candidate.story,
+                cost: [...candidate.cost],
+                rev: [...candidate.rev]
+            };
+
+            document.getElementById('plotterStoryText').textContent = plotterTarget.story;
+
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`prob-cost-${i}`).textContent = formatRp(plotterTarget.cost[i]);
+                document.getElementById(`prob-rev-${i}`).textContent = formatRp(plotterTarget.rev[i]);
+            }
+
+            clearPlotter(false);
+            showToast('Soal baru berhasil dimuat! Silakan plot titik koordinatnya.');
+        }
+
+        function clearPlotter(notify = true) {
+            userPlot = {
+                cost: [null, null, null, null, null],
+                rev:  [null, null, null, null, null]
+            };
+            plotHistory = [];
+            showAnswerKey = false;
+            document.getElementById('plotterFeedback').className = 'feedback-banner';
+            updatePlotCounters();
+            renderPlotterCanvas();
+            if (notify) showToast('Kanvas dibersihkan.');
+        }
+
+        function undoLastPoint() {
+            if (plotHistory.length === 0) {
+                showToast('Belum ada titik yang bisa dihapus.');
+                return;
+            }
+            const last = plotHistory.pop();
+            userPlot[last.series][last.weekIdx] = last.prevVal;
+            showAnswerKey = false;
+            document.getElementById('plotterFeedback').className = 'feedback-banner';
+            updatePlotCounters();
+            renderPlotterCanvas();
+        }
+
+        function updatePlotCounters() {
+            const cCount = userPlot.cost.filter(v => v !== null).length;
+            const rCount = userPlot.rev.filter(v => v !== null).length;
+            document.getElementById('countCost').textContent = cCount;
+            document.getElementById('countRev').textContent = rCount;
+        }
+
+        function snapToGrid(clientX, clientY) {
+            const svg = document.getElementById('plotterSvg');
+            const rect = svg.getBoundingClientRect();
+            const scaleX = PLOT_CFG.W / rect.width;
+            const scaleY = PLOT_CFG.H / rect.height;
+
+            const svgX = (clientX - rect.left) * scaleX;
+            const svgY = (clientY - rect.top) * scaleY;
+
+            const plotW = PLOT_CFG.W - PLOT_CFG.padL - PLOT_CFG.padR;
+            const plotH = PLOT_CFG.H - PLOT_CFG.padT - PLOT_CFG.padB;
+
+            if (svgX < PLOT_CFG.padL - 25 || svgX > PLOT_CFG.padL + plotW + 25 ||
+                svgY < PLOT_CFG.padT - 20 || svgY > PLOT_CFG.padT + plotH + 20) {
+                return null;
+            }
+
+            // Snap ke Minggu terdekat (0..4)
+            const rawWeek = (svgX - PLOT_CFG.padL) / (plotW / 4);
+            const weekIdx = Math.max(0, Math.min(4, Math.round(rawWeek)));
+
+            // Snap ke Kelipatan Rp 500.000 terdekat (0..5.000.000)
+            const stepCount = MAX_Y / STEP_Y; // 10 langkah
+            const rawRatio = 1 - ((svgY - PLOT_CFG.padT) / plotH);
+            const stepIdx = Math.max(0, Math.min(stepCount, Math.round(rawRatio * stepCount)));
+            const valY = stepIdx * STEP_Y;
+
+            return { weekIdx, valY };
+        }
+
+        function handlePlotterClick(e) {
+            const snapped = snapToGrid(e.clientX, e.clientY);
+            if (!snapped) return;
+
+            const prevVal = userPlot[activeSeries][snapped.weekIdx];
+            plotHistory.push({
+                series: activeSeries,
+                weekIdx: snapped.weekIdx,
+                prevVal: prevVal
+            });
+
+            userPlot[activeSeries][snapped.weekIdx] = snapped.valY;
+            showAnswerKey = false;
+            document.getElementById('plotterFeedback').className = 'feedback-banner';
+            updatePlotCounters();
+            renderPlotterCanvas();
+
+            if (activeSeries === 'cost' && userPlot.cost.every(v => v !== null) && userPlot.rev.every(v => v === null)) {
+                setActiveSeries('rev');
+                showToast('Bagus! Semua titik Biaya sudah lengkap. Lanjutkan menggambar garis Pendapatan!');
+            }
+        }
+
+        function handlePlotterMove(e) {
+            const snapped = snapToGrid(e.clientX, e.clientY);
+            hoverCoord = snapped;
+            const hint = document.getElementById('plotterHoverHint');
+            if (snapped) {
+                const labelSeries = activeSeries === 'cost' ? 'Belanja Produksi' : 'Pendapatan Penjualan';
+                hint.textContent = `Target Plot (${labelSeries}): ${WEEKS[snapped.weekIdx]} • ${formatRp(snapped.valY)}`;
+            } else {
+                hint.textContent = 'Klik pada perpotongan garis Minggu & Rupiah untuk meletakkan titik';
+            }
+            renderPlotterCanvas();
+        }
+
+        function renderPlotterCanvas() {
+            const svg = document.getElementById('plotterSvg');
+            if (!svg) return;
+
+            const { W, H, padL, padR, padT, padB } = PLOT_CFG;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+            const stepCount = MAX_Y / STEP_Y;
+
+            let html = '';
+
+            // Latar area Kartesius
+            html += `<rect x="${padL}" y="${padT}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#94A3B8" stroke-width="1.5"/>`;
+
+            // Garis Grid Horizontal (Rp 0 s.d. Rp 5.000.000)
+            for (let s = 0; s <= stepCount; s++) {
+                const val = s * STEP_Y;
+                const y = getPlotY(val);
+                html += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="${s === 0 ? '#334155' : '#CBD5E1'}" stroke-width="${s === 0 ? '1.8' : '1'}" stroke-dasharray="${s === 0 ? '' : '3,3'}"/>`;
+                html += `<text x="${padL - 10}" y="${y + 4}" text-anchor="end" font-size="10.5" font-weight="700" fill="#334155">${formatAxisRp(val)}</text>`;
+            }
+
+            // Garis Grid Vertikal (Minggu 1 - 5) & Titik Snap Halus
+            for (let i = 0; i < 5; i++) {
+                const x = getPlotX(i);
+                html += `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + plotH}" stroke="#CBD5E1" stroke-width="1.2"/>`;
+                html += `<text x="${x}" y="${padT + plotH + 24}" text-anchor="middle" font-size="12" font-weight="800" fill="#1B365D">${WEEKS[i]}</text>`;
+
+                for (let s = 0; s <= stepCount; s++) {
+                    const y = getPlotY(s * STEP_Y);
+                    html += `<circle cx="${x}" cy="${y}" r="2.2" fill="#94A3B8" opacity="0.55" />`;
+                }
+            }
+
+            // Jika Kunci Jawaban Ditampilkan (Garis Putus-Putus)
+            if (showAnswerKey) {
+                const ansCostPts = plotterTarget.cost.map((v, i) => `${getPlotX(i)},${getPlotY(v)}`).join(' ');
+                const ansRevPts = plotterTarget.rev.map((v, i) => `${getPlotX(i)},${getPlotY(v)}`).join(' ');
+                html += `<polyline fill="none" stroke="#E11D48" stroke-width="2.5" stroke-dasharray="6,5" opacity="0.55" points="${ansCostPts}" />`;
+                html += `<polyline fill="none" stroke="#059669" stroke-width="2.5" stroke-dasharray="6,5" opacity="0.55" points="${ansRevPts}" />`;
+
+                for (let i = 0; i < 5; i++) {
+                    html += `<circle cx="${getPlotX(i)}" cy="${getPlotY(plotterTarget.cost[i])}" r="8" fill="none" stroke="#E11D48" stroke-width="2" stroke-dasharray="3,2"/>`;
+                    html += `<circle cx="${getPlotX(i)}" cy="${getPlotY(plotterTarget.rev[i])}" r="8" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="3,2"/>`;
+                }
+            }
+
+            // Gambar Garis & Titik Siswa untuk Belanja Produksi
+            let costSegments = [];
+            for (let i = 0; i < 5; i++) {
+                if (userPlot.cost[i] !== null) costSegments.push(`${getPlotX(i)},${getPlotY(userPlot.cost[i])}`);
+            }
+            if (costSegments.length > 1) {
+                html += `<polyline fill="none" stroke="#E11D48" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${costSegments.join(' ')}" />`;
+            }
+
+            // Gambar Garis & Titik Siswa untuk Pendapatan Penjualan
+            let revSegments = [];
+            for (let i = 0; i < 5; i++) {
+                if (userPlot.rev[i] !== null) revSegments.push(`${getPlotX(i)},${getPlotY(userPlot.rev[i])}`);
+            }
+            if (revSegments.length > 1) {
+                html += `<polyline fill="none" stroke="#059669" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${revSegments.join(' ')}" />`;
+            }
+
+            // Gambar Pin Titik Siswa
+            for (let i = 0; i < 5; i++) {
+                if (userPlot.cost[i] !== null) {
+                    const cx = getPlotX(i), cy = getPlotY(userPlot.cost[i]);
+                    const isWrong = showAnswerKey && userPlot.cost[i] !== plotterTarget.cost[i];
+                    html += `<circle cx="${cx}" cy="${cy}" r="6" fill="#E11D48" stroke="${isWrong ? '#FACC15' : '#ffffff'}" stroke-width="2.5" />`;
+                    html += `<text x="${cx}" y="${cy + 18}" text-anchor="middle" font-size="10" font-weight="800" fill="#BE123C">${formatShortRp(userPlot.cost[i])}</text>`;
+                }
+                if (userPlot.rev[i] !== null) {
+                    const rx = getPlotX(i), ry = getPlotY(userPlot.rev[i]);
+                    const isWrong = showAnswerKey && userPlot.rev[i] !== plotterTarget.rev[i];
+                    html += `<circle cx="${rx}" cy="${ry}" r="6" fill="#059669" stroke="${isWrong ? '#FACC15' : '#ffffff'}" stroke-width="2.5" />`;
+                    html += `<text x="${rx}" y="${ry - 10}" text-anchor="middle" font-size="10" font-weight="800" fill="#047857">${formatShortRp(userPlot.rev[i])}</text>`;
+                }
+            }
+
+            // Indikator Hover Snap (Bayangan titik sebelum diklik)
+            if (hoverCoord) {
+                const hx = getPlotX(hoverCoord.weekIdx);
+                const hy = getPlotY(hoverCoord.valY);
+                const hColor = activeSeries === 'cost' ? '#E11D48' : '#059669';
+                html += `<circle cx="${hx}" cy="${hy}" r="8" fill="${hColor}" opacity="0.28" />`;
+                html += `<circle cx="${hx}" cy="${hy}" r="4" fill="${hColor}" />`;
+            }
+
+            svg.innerHTML = html;
+        }
+
+        function checkUserGraph() {
+            const cCount = userPlot.cost.filter(v => v !== null).length;
+            const rCount = userPlot.rev.filter(v => v !== null).length;
+            const fb = document.getElementById('plotterFeedback');
+
+            if (cCount < 5 || rCount < 5) {
+                fb.className = 'feedback-banner show';
+                fb.style.background = 'var(--amber-bg)';
+                fb.style.border = '1px solid #FCD34D';
+                fb.style.color = '#92400E';
+                fb.innerHTML = `⚠️ <strong>Grafik belum lengkap!</strong> Kamu baru meletakkan <strong>${cCount}/5 titik Belanja Produksi</strong> dan <strong>${rCount}/5 titik Pendapatan Penjualan</strong>. Lengkapi semua 10 titik terlebih dahulu sebelum memeriksa.`;
+                return;
+            }
+
+            let correctCount = 0;
+            let mistakes = [];
+
+            for (let i = 0; i < 5; i++) {
+                if (userPlot.cost[i] === plotterTarget.cost[i]) {
+                    correctCount++;
+                } else {
+                    mistakes.push(`Biaya ${WEEKS[i]} (kamu: ${formatRp(userPlot.cost[i])}, seharusnya: ${formatRp(plotterTarget.cost[i])})`);
+                }
+
+                if (userPlot.rev[i] === plotterTarget.rev[i]) {
+                    correctCount++;
+                } else {
+                    mistakes.push(`Pendapatan ${WEEKS[i]} (kamu: ${formatRp(userPlot.rev[i])}, seharusnya: ${formatRp(plotterTarget.rev[i])})`);
+                }
+            }
+
+            const score = correctCount * 10;
+            showAnswerKey = true;
+            renderPlotterCanvas();
+
+            fb.className = 'feedback-banner show';
+            if (score === 100) {
+                fb.style.background = 'var(--emerald-bg)';
+                fb.style.border = '1px solid var(--emerald-border)';
+                fb.style.color = '#065F46';
+                fb.innerHTML = `🎉 <strong>Luar Biasa! Skor Akurasi: 100/100!</strong> Semua 10 titik koordinat Belanja Produksi dan Pendapatan Penjualan telah kamu plot dengan sangat tepat.`;
+            } else {
+                fb.style.background = 'var(--coral-bg)';
+                fb.style.border = '1px solid var(--coral-border)';
+                fb.style.color = '#9F1239';
+                fb.innerHTML = `
+                    <strong>📊 Skor Akurasi: ${score}/100 (${correctCount} dari 10 titik tepat).</strong><br>
+                    Garis putus-putus pada grafik menunjukkan kunci jawaban yang benar. Perbaiki titik berikut:<br>
+                    <ul style="margin-top: 6px; padding-left: 20px;">
+                        ${mistakes.map(m => `<li>${m}</li>`).join('')}
+                    </ul>
+                `;
+            }
+        }
+
+        // =========================================================================
+        // LOGIKA MODE 3: UJI PEMAHAMAN MATEMATIKA & EKSPOR LEMBAR KERJA
+        // =========================================================================
+        function checkMathAnswers() {
+            // 1. Selisih Laba Bersih pada Minggu ke-5
+            const profitM5 = simData.rev[4] - simData.cost[4];
+            const ans1 = parseNumericRp(document.getElementById('qMaxProfitWeek').value);
+            const res1 = document.getElementById('resQ1');
+
+            if (isNaN(ans1)) {
+                res1.style.color = 'var(--amber)';
+                res1.textContent = '⚠️ Masukkan nominal Rupiah terlebih dahulu.';
+            } else if (ans1 === profitM5) {
+                res1.style.color = 'var(--emerald)';
+                res1.textContent = `✅ Tepat sekali! (${formatRp(profitM5)})`;
+            } else {
+                res1.style.color = 'var(--coral)';
+                res1.textContent = `❌ Belum tepat. Hitung: Pendapatan M5 (${formatRp(simData.rev[4])}) − Biaya M5 (${formatRp(simData.cost[4])}).`;
+            }
+
+            // 2. Total Pendapatan Penjualan selama 5 minggu (M1-M5)
+            const totalRev = simData.rev.reduce((a, b) => a + b, 0);
+            const ans2 = parseNumericRp(document.getElementById('qTotalRevenue5W').value);
+            const res2 = document.getElementById('resQ2');
+
+            if (isNaN(ans2)) {
+                res2.style.color = 'var(--amber)';
+                res2.textContent = '⚠️ Masukkan total pendapatan 5 minggu.';
+            } else if (ans2 === totalRev) {
+                res2.style.color = 'var(--emerald)';
+                res2.textContent = `✅ Benar! Total Pendapatan = ${formatRp(totalRev)}.`;
+            } else {
+                res2.style.color = 'var(--coral)';
+                res2.textContent = `❌ Belum tepat. Jumlahkan pendapatan M1 + M2 + M3 + M4 + M5.`;
+            }
+
+            // 3. Kenaikan nominal Pendapatan dari Minggu ke-1 hingga Minggu ke-5
+            const revGrowth = simData.rev[4] - simData.rev[0];
+            const ans3 = parseNumericRp(document.getElementById('qRevGrowthNominal').value);
+            const res3 = document.getElementById('resQ3');
+
+            if (isNaN(ans3)) {
+                res3.style.color = 'var(--amber)';
+                res3.textContent = '⚠️ Masukkan nominal selisih kenaikan.';
+            } else if (ans3 === revGrowth) {
+                res3.style.color = 'var(--emerald)';
+                res3.textContent = `✅ Tepat! Naik ${formatRp(revGrowth)} dari M1 ke M5.`;
+            } else {
+                res3.style.color = 'var(--coral)';
+                res3.textContent = `❌ Belum tepat. Hitung: Pendapatan M5 (${formatRp(simData.rev[4])}) − Pendapatan M1 (${formatRp(simData.rev[0])}).`;
+            }
+        }
+
+        function buildWorksheetSummaryText() {
+            const name = document.getElementById('studentName').value || '-';
+            const cls = document.getElementById('studentClass').value || '-';
+            const comp = document.getElementById('companyName').value || '-';
+            const role = document.getElementById('studentRole').value || '-';
+
+            const totalCost = simData.cost.reduce((a, b) => a + b, 0);
+            const totalRev = simData.rev.reduce((a, b) => a + b, 0);
+            const net = totalRev - totalCost;
+
+            const q1Val = parseNumericRp(document.getElementById('qMaxProfitWeek').value);
+            const q1Text = !isNaN(q1Val) ? formatRp(q1Val) : '-';
+            const q2Val = parseNumericRp(document.getElementById('qTotalRevenue5W').value);
+            const q2Text = !isNaN(q2Val) ? formatRp(q2Val) : '-';
+            const q3Val = parseNumericRp(document.getElementById('qRevGrowthNominal').value);
+            const q3Text = !isNaN(q3Val) ? formatRp(q3Val) : '-';
+
+            const r1 = document.getElementById('refCostFactor').value || '-';
+            const r2 = document.getElementById('refRevStrategy').value || '-';
+
+            let tableLines = WEEKS.map((w, i) => {
+                const diff = simData.rev[i] - simData.cost[i];
+                return `- ${w}: Biaya ${formatRp(simData.cost[i])} | Pendapatan ${formatRp(simData.rev[i])} | Selisih ${diff >= 0 ? '+' : ''}${formatRp(diff)}`;
+            }).join('\n');
+
+            return `====================================================================
+LAB GRAFIK KEUANGAN STUDENT COMPANY (MINGGU 1 – 5)
+SMP PEMBANGUNAN JAYA • INTEGRASI IPS & MATEMATIKA
+====================================================================
+
+[IDENTITAS MURID]
+- Nama Murid      : ${name}
+- Kelas           : ${cls}
+- Nama Perusahaan : ${comp}
+- Peran / Jabatan : ${role}
+
+[DATA GRAFIK KEUANGAN MINGGU 1 – 5]
+${tableLines}
+--------------------------------------------------------------------
+- Total Belanja Produksi : ${formatRp(totalCost)}
+- Total Pendapatan       : ${formatRp(totalRev)}
+- Laba / Rugi Kumulatif  : ${net >= 0 ? '+' : ''}${formatRp(net)}
+
+[A. JAWABAN ANALISIS MATEMATIKA]
+1. Selisih laba bersih Minggu ke-5              : ${q1Text}
+2. Total pendapatan penjualan 5 minggu (M1–M5)  : ${q2Text}
+3. Kenaikan nominal pendapatan M1 ke M5         : ${q3Text}
+
+[B. ANALISIS EKONOMI & PENGAMBILAN KEPUTUSAN (IPS)]
+1. Faktor Efisiensi Biaya Produksi:
+${r1}
+
+2. Strategi Pemasaran & Peningkatan Permintaan Pasar:
+${r2}
+====================================================================`;
+        }
+
+        function copyWorksheetText() {
+            const text = buildWorksheetSummaryText();
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast('📋 Jawaban berhasil disalin ke clipboard!');
+            } catch (e) {
+                showToast('Gagal menyalin otomatis. Gunakan tombol Unduh .TXT.');
+            }
+            document.body.removeChild(ta);
+        }
+
+        function downloadWorksheetTxt() {
+            const text = buildWorksheetSummaryText();
+            const name = (document.getElementById('studentName').value || 'Murid').replace(/\s+/g, '_');
+            const cls = document.getElementById('studentClass').value || '8';
+            const filename = `Lab_Grafik_SC_${cls}_${name}.txt`;
+
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast(`⬇️ File ${filename} berhasil diunduh!`);
+        }
+
+        function printWorksheet() {
+            renderLineChart('miniChartSvg', simData.cost, simData.rev, { compact: true });
+            window.print();
+        }
+
+        // =========================================================================
+        // INISIALISASI SAAT HALAMAN SIAP
+        // =========================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            buildWeekControls();
+            refreshSimulation();
+            generateNewPlotProblem();
+
+            const plotterSvg = document.getElementById('plotterSvg');
+            plotterSvg.addEventListener('click', handlePlotterClick);
+            plotterSvg.addEventListener('mousemove', handlePlotterMove);
+            plotterSvg.addEventListener('mouseleave', () => {
+                hoverCoord = null;
+                renderPlotterCanvas();
+            });
+            plotterSvg.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    handlePlotterClick({ clientX: touch.clientX, clientY: touch.clientY });
+                }
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
